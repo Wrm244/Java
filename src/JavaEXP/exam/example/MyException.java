@@ -1,4 +1,4 @@
-package JavaEXP.exam;
+package JavaEXP.exam.example;
 
 public class MyException extends Exception{
     public MyException() {

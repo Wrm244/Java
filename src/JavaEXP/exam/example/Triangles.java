@@ -1,4 +1,4 @@
-package JavaEXP.exam;
+package JavaEXP.exam.example;
 
 public class Triangles extends shapes{
     double edg1,edg2,edg3;

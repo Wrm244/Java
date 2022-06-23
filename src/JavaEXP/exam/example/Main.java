@@ -1,4 +1,4 @@
-package JavaEXP.exam;
+package JavaEXP.exam.example;
 /**
  * @author 河山
  * @version 1.0.0

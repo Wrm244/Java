@@ -1,4 +1,4 @@
-package JavaEXP.exam;
+package JavaEXP.exam.example;
 
 abstract class shapes {
     abstract double perimeterCalculation();

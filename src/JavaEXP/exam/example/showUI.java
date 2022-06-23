@@ -1,4 +1,4 @@
-package JavaEXP.exam;
+package JavaEXP.exam.example;
 
 import javax.swing.*;
 import java.awt.*;
