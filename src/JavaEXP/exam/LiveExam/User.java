@@ -1,10 +1,5 @@
 package JavaEXP.exam.LiveExam;
 
-import JavaEXP.exp3.Employee;
-
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-
 public class User {
     private String UserName;
     private String PassWord;
@@ -15,10 +10,10 @@ public class User {
         this.PassWord=PassWord;
     }
 
-    public static boolean checkPassword(String str) {
+    public  boolean checkPassword() {
         int xiaoxie=0,daxie=0,num=0;
-        char[] c=str.toCharArray();
-        for(int i=0;i<str.length();i++){
+        char[] c=this.PassWord.toCharArray();
+        for(int i=0;i<this.PassWord.length();i++){
             if(c[i]>='a'&&c[i]<='z'){
                 xiaoxie++;
             }else if(c[i]>='A'&&c[i]<='Z'){
@@ -27,10 +22,7 @@ public class User {
                 num++;
             }
         }
-        if (xiaoxie>0 && daxie>0 && num>0) {
-            return true;
-        } else
-            return false;
+        return xiaoxie > 0 && daxie > 0 && num > 0;
     }
     public String getPassWord(){
         return PassWord;

@@ -1,108 +1,71 @@
 package JavaEXP.exam.LiveExam;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Files {
-    static String filename = "User.txt";
 
-    static List<User> userlist = new ArrayList<User>();
+    public void write(String[] message)throws IOException
+    {
+        File file=new File("Message.txt");
+        String messagesum="";
+        for (int i=0; i<2; i++)  //将信息格式化存储
+            messagesum+=message[i]+"~";
+        if(!file.exists())
+            file.createNewFile();
+        FileOutputStream out=new FileOutputStream(file,true); //建立输出对象，true表示追加
+        StringBuffer sb=new StringBuffer();      //创建字符串流
+        sb.append(messagesum+"\n");				//向字符串流中添加信息
+        out.write(sb.toString().getBytes("gb2312"));         //将字符串流中的信息写入文本
+        out.close();			//关闭
+    }
+    public int read(String countname,String pwd) throws IOException{
 
-    public static void writeEm(List<User> userlist) {
-        try {
-            ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream(filename));
-            oout.writeObject(userlist); //对象的序列化
-            oout.close();
-        } catch (Exception e) {
-            System.out.println("写对象错误");
-        }
-    }
-    public static void appendEm(User em) {
-        userlist = readEm();
-        userlist.add(em);
-        try {
-            ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream(filename));
-            oout.writeObject(userlist); //对象的序列化
-            oout.close();
-        } catch (Exception e) {
-            System.out.println("写对象错误");
-        }
-    }
-    public static List<User> readEm() {
-        try {
-            ObjectInputStream oin = new ObjectInputStream(new FileInputStream(filename));
-            userlist = (List<User>) oin.readObject(); //将输入流转换为对象(对象的反序列化)
-        } catch (Exception e) {
-            System.out.println("没有文件");
-        }
-        User.user = userlist.size();
-        return userlist;
-    }
+        File file=new File("Message.txt");   //创建文件类
+        if(!file.exists()||file.isDirectory()) //判断文件是否存在
+            //throw new FileNotFoundException();
+            file.createNewFile();
+        BufferedReader br=new BufferedReader(new FileReader(file)); //创建读入缓冲流，按行读入
+        String temp;
+        // StringBuffer sb=new StringBuffer();
+        int number = 0;
+        temp=br.readLine();   //先读取一行
+        while(temp!=null){
+            String sbstring = temp.toString();   //转化为string
+            int n = sbstring.length();            //测字符串长度
+            String []message = new String[5];     //按~拆分 成5个字符串数组，按账号和密码进行信息验证
+            int k=0;
 
-    public static User searchUsername(String ID) {
-        //System.out.println("searchObjID");
-        userlist = readEm();
-        System.out.println("现有人数：" + userlist.size());
-        for (int index = 0; index < userlist.size(); index++) {
-            if (userlist.get(index) != null) {
-                System.out.println(userlist.get(index).getUserName());
-                if (userlist.get(index).getUserName() != null && userlist.get(index).getUserName().equals(ID))
-                    return userlist.get(index);
+            for (int i=0; i<2; i++)
+                message[i]="";
+            //我们在写入用户时用~分割， 所以我们利用~在分割开来
+            for (int i=0; i<n; i++)
+            {
+                if(sbstring.charAt(i)=='~')
+                {
+                    //System.out.println("@"+message[k]);
+                    k++;
+                }
+                else
+                {
+                    message[k] += sbstring.charAt(i);
+                }
             }
-        }
-        System.out.println("没找到");
-        return null;
-    }
 
-//    public File openFile(String fileNames) {
-//        File file = new File(fileNames);
-//
-//        if (!file.exists()) {
-//
-//            try {
-//
-//                file.createNewFile(); //如果文件不存在则创建文件
-//
-//            } catch (IOException e) {
-//
-//                e.printStackTrace();
-//
-//            }
-//
-//        }
-//        return file;
-//    }
-//
-//    private static void writeInFile(File file, String content) {
-//
-//        Writer writer = null;
-//
-//        StringBuilder outputString = new StringBuilder();
-//
-//        try {
-//            outputString.append(content + "\r\n");
-//
-//            writer = new FileWriter(file, true); // true表示追加
-//
-//            writer.write(outputString.toString());
-//
-//        } catch (IOException e) {
-//
-//            e.printStackTrace();
-//
-//        } finally {
-//
-//            try {
-//
-//                writer.close();
-//
-//            } catch (IOException e2) {
-//
-//                e2.printStackTrace();
-//
-//            }
-//
-//        }
-//
-//    }
+            if (countname.equals(message[0]))//比较账户密码是否相等
+            {
+                if(pwd.equals(message[1])) {
+                    number= 1; //登录成功
+                }
+                else{
+                    number= 2;//密码错误
+                }
+            }
+            else {
+                number= 3;//用户名不存在
+            }
+            if(number==0)
+                return number;
+            temp=br.readLine();
+        }
+        return number;
+    }
 }

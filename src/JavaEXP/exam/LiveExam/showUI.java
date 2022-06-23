@@ -5,14 +5,18 @@ import JavaEXP.exp3.Operatefile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class showUI extends JFrame {    //继承JFrame顶层容器类
 
     //定义组件
     JPanel jp1,jp2,jp3;    //定义面板
-    JTextField jtf1;        //定义文本框
-    JPasswordField jpf1;    //定义密码框
+    static JTextField jtf1;        //定义文本框
+    static JPasswordField jpf1;    //定义密码框
     JLabel jlb1,jlb2;        //定义标签
     JButton jb1,jb2;        //定义按钮
 
@@ -56,29 +60,15 @@ public class showUI extends JFrame {    //继承JFrame顶层容器类
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //设置界面和虚拟机一起关闭
         this.setVisible(true);    //设置界面可显示
 
-        jb1.addActionListener(e->{
-            try{
-                String UserName = jtf1.getText();
-                String PassWord = String.valueOf(jpf1.getPassword());
+        jb1.addActionListener(new  Listeners());
+        jb2.addActionListener(new  Listeners());
+        jtf1.addKeyListener(new Listeners());
 
-            }catch (Exception e1){
-
-            }finally {
-
-            }
-        });
-
-        jb2.addActionListener(e->{
-            try{
-                String UserName = jtf1.getText();
-                String PassWord = String.valueOf(jpf1.getPassword());
-
-
-              }catch (Exception e1){
-
-            }finally {
-
-            }
-        });
+    }
+    public static JTextField getJTextField(){
+        return jtf1;
+    }
+    public static JPasswordField getJPasswordField(){
+        return jpf1;
     }
 }
