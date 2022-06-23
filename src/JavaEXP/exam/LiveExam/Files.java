@@ -53,19 +53,14 @@ public class Files {
             if (countname.equals(message[0]))//比较账户密码是否相等
             {
                 if(pwd.equals(message[1])) {
-                    number= 1; //登录成功
+                    return 1; //登录成功
                 }
                 else{
-                    number= 2;//密码错误
+                    return 2;//密码错误
                 }
             }
-            else {
-                number= 3;//用户名不存在
-            }
-            if(number==0)
-                return number;
             temp=br.readLine();
         }
-        return number;
+        return 3;
     }
 }

@@ -15,9 +15,11 @@ public class Listeners  implements ActionListener,KeyListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("登录")) {
             try {
+
                 String UserName = showUI.getJTextField().getText();
                 String PassWord = String.valueOf(showUI.getJPasswordField().getPassword());
                 Files file = new Files();
+                System.out.println(file.read(UserName, PassWord));
                 if (file.read(UserName, PassWord) == 1) {
                     JOptionPane.showMessageDialog(null, "登录成功！", "提示消息", JOptionPane.WARNING_MESSAGE);
                 }
