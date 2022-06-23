@@ -1,15 +1,7 @@
 package JavaEXP.exam.LiveExam;
 
-import JavaEXP.exp3.Employee;
-import JavaEXP.exp3.Operatefile;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.List;
-
-import static javax.swing.JOptionPane.showMessageDialog;
 
 public class showUI extends JFrame {    //继承JFrame顶层容器类
 
@@ -65,6 +57,7 @@ public class showUI extends JFrame {    //继承JFrame顶层容器类
         jtf1.addKeyListener(new Listeners());
 
     }
+    //是随着类的加载而加载的，且只加载一次。
     public static JTextField getJTextField(){
         return jtf1;
     }
