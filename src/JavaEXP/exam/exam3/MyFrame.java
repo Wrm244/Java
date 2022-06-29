@@ -81,7 +81,7 @@ public class MyFrame extends JFrame{
 				}catch (Exception e1) {
 
 					JOptionPane.showMessageDialog(this, "请输入数字噢");
-					System.out.println("exit!");
+					System.exit(0);
 				}
 
 		});

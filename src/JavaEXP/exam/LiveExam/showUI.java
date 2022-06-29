@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class showUI extends JFrame {    //继承JFrame顶层容器类
-
     //定义组件
     JPanel jp1,jp2,jp3;    //定义面板
+
     static JTextField jtf1;        //定义文本框
     static JPasswordField jpf1;    //定义密码框
     JLabel jlb1,jlb2;        //定义标签
-    JButton jb1,jb2;        //定义按钮
+    static JButton jb1,jb2;        //定义按钮
 
     public showUI()        //构造函数
     {
@@ -29,12 +29,13 @@ public class showUI extends JFrame {    //继承JFrame顶层容器类
         jpf1=new JPasswordField(10);    //创建密码框
 
         //设置布局管理器
-        this.setLayout(new GridLayout(3,1));    //网格布局，3行一列
-
+        this.setLayout(new GridLayout(4,1));    //网格布局，3行一列
+        this.add(new JPanel().add(new JLabel("")));
         //添加组件
         this.add(jp1);    //添加面板
         this.add(jp2);
         this.add(jp3);
+
 
         jp1.add(jlb1);    //添加面板1的标签和文本框
         jp1.add(jtf1);
@@ -45,12 +46,14 @@ public class showUI extends JFrame {    //继承JFrame顶层容器类
         jp3.add(jb1);    //添加面板3的按钮
         jp3.add(jb2);
 
+
         //设置窗口属性
         this.setTitle("登录界面");    //创建界面标题
         this.setSize(300, 200);        //设置界面像素
-        this.setLocation(500, 100);    //设置界面初始位置
+        this.setLocation(500, 200);    //设置界面初始位置
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    //设置界面和虚拟机一起关闭
         this.setVisible(true);    //设置界面可显示
+
 
         jb1.addActionListener(new  Listeners());
         jb2.addActionListener(new  Listeners());

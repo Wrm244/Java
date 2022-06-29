@@ -7,13 +7,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 
+import static JavaEXP.exam.LiveExam.showUI.jb2;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Listeners  implements ActionListener,KeyListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("登录")) {
+        if (e.getSource()==jb2) {
             try {
 
                 String UserName = showUI.getJTextField().getText(); //getJTextField()是静态方法
